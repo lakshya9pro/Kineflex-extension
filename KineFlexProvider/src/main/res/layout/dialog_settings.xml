@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/kineflex_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_title"
+            android:textColor="@color/kineflex_text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/settings_description"
+            android:textColor="@color/kineflex_text_secondary"
+            android:textSize="13sp" />
+
+        <!-- Status Summary -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/kineflex_surface"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/text_kineflex_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="KineFlex: Checking..."
+                android:textColor="@color/kineflex_text_secondary"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/text_tmdb_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="TMDB: Checking..."
+                android:textColor="@color/kineflex_text_secondary"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- KineFlex API Key Field -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@string/kineflex_api_key_label"
+            android:textColor="@color/kineflex_text_primary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="@color/kineflex_surface"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp">
+
+            <EditText
+                android:id="@+id/edit_kineflex_key"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/kineflex_api_key_hint"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/kineflex_text_primary"
+                android:textColorHint="@color/kineflex_text_secondary"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/btn_toggle_kineflex_visibility"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Toggle KineFlex key visibility"
+                android:padding="4dp"
+                android:src="@drawable/ic_visibility_off_24" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_kineflex_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/kineflex_key_info"
+            android:textColor="@color/kineflex_secondary"
+            android:textSize="11sp" />
+
+        <!-- TMDB Credential Field -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tmdb_api_key_label"
+            android:textColor="@color/kineflex_text_primary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="@color/kineflex_surface"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp">
+
+            <EditText
+                android:id="@+id/edit_tmdb_key"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/tmdb_api_key_hint"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/kineflex_text_primary"
+                android:textColorHint="@color/kineflex_text_secondary"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/btn_toggle_tmdb_visibility"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Toggle TMDB credential visibility"
+                android:padding="4dp"
+                android:src="@drawable/ic_visibility_off_24" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_tmdb_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/tmdb_key_info"
+            android:textColor="@color/kineflex_secondary"
+            android:textSize="11sp" />
+
+        <!-- Test Connection Result Text -->
+        <TextView
+            android:id="@+id/text_test_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/kineflex_text_secondary"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+        <!-- Row 1: Test & Clear -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_test"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:text="@string/btn_test"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_clear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:text="@string/btn_clear"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <!-- Row 2: Cancel & Save -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:text="@string/btn_cancel"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:text="@string/btn_save"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

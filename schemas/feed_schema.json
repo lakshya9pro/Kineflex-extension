@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KineFlex Category Feed Schema",
+  "description": "Standard schema for KineFlex CloudStream home category feeds.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "type"
+    ],
+    "properties": {
+      "id": {
+        "description": "The TMDB ID of the movie or TV show. Must be an integer or integer string.",
+        "type": ["integer", "string"]
+      },
+      "title": {
+        "description": "Title of the media item (or 'name' for TV series).",
+        "type": "string"
+      },
+      "name": {
+        "description": "Alternative title field, standard for TMDB TV shows.",
+        "type": "string"
+      },
+      "year": {
+        "description": "Four-digit release year as an integer or string.",
+        "type": ["integer", "string"]
+      },
+      "imgs": {
+        "description": "Fully qualified image URL or TMDB poster path (e.g., /oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg).",
+        "type": "string"
+      },
+      "poster": {
+        "description": "Alternative field for poster URL.",
+        "type": "string"
+      },
+      "poster_path": {
+        "description": "Standard TMDB relative path for poster.",
+        "type": "string"
+      },
+      "type": {
+        "description": "Media classification. Use 'movie' for films and 'tv' or 'series' for television series.",
+        "type": "string",
+        "enum": ["movie", "tv", "series"]
+      },
+      "overview": {
+        "description": "Optional synopsis or plot description.",
+        "type": "string"
+      },
+      "rating": {
+        "description": "Optional average rating (e.g., 8.8).",
+        "type": "number"
+      }
+    },
+    "anyOf": [
+      { "required": ["title"] },
+      { "required": ["name"] }
+    ]
+  }
+}

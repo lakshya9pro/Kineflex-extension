@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="plugin_name">KineFlex</string>
+    <string name="settings_title">KineFlex Settings</string>
+    <string name="settings_description">Configure your API credentials for streaming and metadata resolution.</string>
+    <string name="kineflex_api_key_label">KineFlex API Key</string>
+    <string name="kineflex_api_key_hint">Enter KineFlex Bearer API Key</string>
+    <string name="tmdb_api_key_label">TMDB Credential (API Key or Read Access Token)</string>
+    <string name="tmdb_api_key_hint">Enter TMDB v3 Key or v4 Read Token</string>
+    <string name="kineflex_key_info">Obtain your KineFlex key from: https://api.kineflex.site</string>
+    <string name="tmdb_key_info">Obtain your TMDB key from: https://www.themoviedb.org/settings/api</string>
+    <string name="status_configured">Configured</string>
+    <string name="status_not_configured">Not Set</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_clear">Clear Keys</string>
+    <string name="btn_test">Test Connection</string>
+    <string name="toast_saved">Credentials saved successfully</string>
+    <string name="toast_cleared">Credentials cleared</string>
+    <string name="toast_missing_keys">Please configure your KineFlex and TMDB credentials in Extension Settings.</string>
+</resources>
