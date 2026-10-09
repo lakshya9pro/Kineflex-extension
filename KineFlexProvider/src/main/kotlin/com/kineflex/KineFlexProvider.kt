@@ -60,7 +60,7 @@ class KineFlexProvider : MainAPI() {
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse? {
         val feedUrl = request.data
         if (feedUrl.isBlank()) {
-            return newHomePageResponse(request.name, emptyList(), hasNext = false)
+            return newHomePageResponse(request.name, emptyList<SearchResponse>(), hasNext = false)
         }
 
         // Each category feed is loaded via FeedManager
@@ -74,7 +74,7 @@ class KineFlexProvider : MainAPI() {
      */
     override suspend fun search(query: String): List<SearchResponse> {
         val cleanQuery = query.trim()
-        if (cleanQuery.isEmpty()) return emptyList()
+        if (cleanQuery.isEmpty()) return emptyList<SearchResponse>()
 
         if (!KineFlexSettings.isTmdbConfigured()) {
             try {

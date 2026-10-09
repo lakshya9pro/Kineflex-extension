@@ -199,12 +199,12 @@ object TmdbApi {
             val response = app.get(url, headers = headers, params = params, timeout = 15L)
             if (response.isSuccessful) {
                 val seasonDetails = KineFlexJson.mapper.readValue(response.text, TmdbSeasonDetails::class.java)
-                seasonDetails.episodes.orEmpty()
+                seasonDetails?.episodes.orEmpty()
             } else {
-                emptyList()
+                emptyList<TmdbTvEpisode>()
             }
         } catch (_: Throwable) {
-            emptyList()
+            emptyList<TmdbTvEpisode>()
         }
     }
 

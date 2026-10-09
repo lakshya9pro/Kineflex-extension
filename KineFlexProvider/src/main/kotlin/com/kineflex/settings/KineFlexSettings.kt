@@ -3,14 +3,12 @@ package com.kineflex.settings
 import android.content.Context
 import android.content.SharedPreferences
 import com.kineflex.config.FeedCategory
-import com.lagradost.cloudstream3.utils.DataStoreHelper.getKey
-import com.lagradost.cloudstream3.utils.DataStoreHelper.removeKey
-import com.lagradost.cloudstream3.utils.DataStoreHelper.setKey
+import com.kineflex.config.KineFlexConfig
 
 /**
  * Manages persistent storage for KineFlex extension settings.
- * Securely manages KineFlex Bearer API Key, TMDB credentials, and custom feed URLs.
- * Integrates with CloudStream's DataStore and Android SharedPreferences.
+ * Securely stores the KineFlex Bearer API Key, TMDB credentials, and custom feed URLs.
+ * Uses Android SharedPreferences with in-memory caching for performance and durability.
  */
 object KineFlexSettings {
     private const val PREFS_FILE = "kineflex_extension_prefs"
@@ -20,6 +18,9 @@ object KineFlexSettings {
     const val KEY_TMDB_CREDENTIAL = "kineflex_tmdb_credential_v1"
     const val KEY_FEED_URL_PREFIX = "kineflex_feed_url_"
 
+    @Volatile
+    private var appContext: Context? = null
+
     // In-memory cache for fast access during player and provider calls
     @Volatile
     private var cachedKineFlexKey: String? = null
@@ -27,8 +28,16 @@ object KineFlexSettings {
     @Volatile
     private var cachedTmdbCredential: String? = null
 
+    /**
+     * Initializes the settings storage with the application or plugin context.
+     */
+    fun init(context: Context) {
+        appContext = context.applicationContext ?: context
+    }
+
     private fun getPrefs(context: Context?): SharedPreferences? {
-        return context?.getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE)
+        val ctx = context ?: appContext
+        return ctx?.getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE)
     }
 
     /**
@@ -38,15 +47,7 @@ object KineFlexSettings {
     fun getKineFlexApiKey(context: Context? = null): String {
         cachedKineFlexKey?.let { return it }
 
-        var key: String? = null
-        try {
-            key = getKey<String>(KEY_KINEFLEX_API_KEY)
-        } catch (_: Throwable) {}
-
-        if (key.isNullOrBlank()) {
-            key = getPrefs(context)?.getString(KEY_KINEFLEX_API_KEY, null)
-        }
-
+        val key = getPrefs(context)?.getString(KEY_KINEFLEX_API_KEY, null)
         val resolved = key?.trim().orEmpty()
         if (resolved.isNotEmpty()) {
             cachedKineFlexKey = resolved
@@ -61,14 +62,6 @@ object KineFlexSettings {
         val trimmed = apiKey?.trim().orEmpty()
         cachedKineFlexKey = trimmed
 
-        try {
-            if (trimmed.isEmpty()) {
-                removeKey(KEY_KINEFLEX_API_KEY)
-            } else {
-                setKey(KEY_KINEFLEX_API_KEY, trimmed)
-            }
-        } catch (_: Throwable) {}
-
         getPrefs(context)?.edit()?.apply {
             if (trimmed.isEmpty()) {
                 remove(KEY_KINEFLEX_API_KEY)
@@ -81,19 +74,12 @@ object KineFlexSettings {
 
     /**
      * Retrieves the configured TMDB credential (API Key or v4 Read Token).
+     * Falls back to [KineFlexConfig.DEFAULT_TMDB_API_KEY] if none is explicitly saved.
      */
     fun getTmdbCredential(context: Context? = null): String {
         cachedTmdbCredential?.let { return it }
 
-        var credential: String? = null
-        try {
-            credential = getKey<String>(KEY_TMDB_CREDENTIAL)
-        } catch (_: Throwable) {}
-
-        if (credential.isNullOrBlank()) {
-            credential = getPrefs(context)?.getString(KEY_TMDB_CREDENTIAL, null)
-        }
-
+        val credential = getPrefs(context)?.getString(KEY_TMDB_CREDENTIAL, null)
         val resolved = credential?.trim()?.takeIf { it.isNotEmpty() } ?: KineFlexConfig.DEFAULT_TMDB_API_KEY
         if (resolved.isNotEmpty()) {
             cachedTmdbCredential = resolved
@@ -107,14 +93,6 @@ object KineFlexSettings {
     fun setTmdbCredential(context: Context? = null, credential: String?) {
         val trimmed = credential?.trim().orEmpty()
         cachedTmdbCredential = trimmed
-
-        try {
-            if (trimmed.isEmpty()) {
-                removeKey(KEY_TMDB_CREDENTIAL)
-            } else {
-                setKey(KEY_TMDB_CREDENTIAL, trimmed)
-            }
-        } catch (_: Throwable) {}
 
         getPrefs(context)?.edit()?.apply {
             if (trimmed.isEmpty()) {
@@ -131,15 +109,7 @@ object KineFlexSettings {
      */
     fun getCategoryUrl(category: FeedCategory, context: Context? = null): String {
         val prefKey = KEY_FEED_URL_PREFIX + category.id
-        var customUrl: String? = null
-        try {
-            customUrl = getKey<String>(prefKey)
-        } catch (_: Throwable) {}
-
-        if (customUrl.isNullOrBlank()) {
-            customUrl = getPrefs(context)?.getString(prefKey, null)
-        }
-
+        val customUrl = getPrefs(context)?.getString(prefKey, null)
         return customUrl?.trim()?.takeIf { it.isNotEmpty() } ?: category.defaultUrl
     }
 
@@ -149,14 +119,6 @@ object KineFlexSettings {
     fun setCategoryUrl(category: FeedCategory, context: Context? = null, url: String?) {
         val prefKey = KEY_FEED_URL_PREFIX + category.id
         val trimmed = url?.trim().orEmpty()
-
-        try {
-            if (trimmed.isEmpty()) {
-                removeKey(prefKey)
-            } else {
-                setKey(prefKey, trimmed)
-            }
-        } catch (_: Throwable) {}
 
         getPrefs(context)?.edit()?.apply {
             if (trimmed.isEmpty()) {
@@ -174,11 +136,6 @@ object KineFlexSettings {
     fun clearAll(context: Context? = null) {
         cachedKineFlexKey = null
         cachedTmdbCredential = null
-
-        try {
-            removeKey(KEY_KINEFLEX_API_KEY)
-            removeKey(KEY_TMDB_CREDENTIAL)
-        } catch (_: Throwable) {}
 
         getPrefs(context)?.edit()?.apply {
             remove(KEY_KINEFLEX_API_KEY)

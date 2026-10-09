@@ -148,15 +148,18 @@ data class FeedItem(
             posterUrl = posterUrl
         ).toJson()
 
+        val pUrl = this.posterUrl
+        val y = this.displayYear
+
         return if (isTvSeries) {
             newTvSeriesSearchResponse(resolvedTitle, loadData, TvType.TvSeries) {
-                this.posterUrl = this@FeedItem.posterUrl
-                this.year = this@FeedItem.displayYear
+                this.posterUrl = pUrl
+                this.year = y
             }
         } else {
             newMovieSearchResponse(resolvedTitle, loadData, TvType.Movie) {
-                this.posterUrl = this@FeedItem.posterUrl
-                this.year = this@FeedItem.displayYear
+                this.posterUrl = pUrl
+                this.year = y
             }
         }
     }

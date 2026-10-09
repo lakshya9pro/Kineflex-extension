@@ -12,6 +12,7 @@ class KineFlexPlugin : Plugin() {
 
     override fun load(context: Context) {
         activity = context as? AppCompatActivity
+        com.kineflex.settings.KineFlexSettings.init(context)
 
         // Register the KineFlex provider
         registerMainAPI(KineFlexProvider())

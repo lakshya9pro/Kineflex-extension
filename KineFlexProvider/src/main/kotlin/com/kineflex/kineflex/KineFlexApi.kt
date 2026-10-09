@@ -43,6 +43,7 @@ object KineFlexApi {
      * Executes the authorized HTTP request to KineFlex, validates the response,
      * extracts streaming headers and media format, and builds the ExtractorLink.
      */
+    @Suppress("DEPRECATION")
     private suspend fun executeStreamRequest(endpointUrl: String, apiKey: String, label: String): ExtractorLink {
         val response = try {
             app.get(
