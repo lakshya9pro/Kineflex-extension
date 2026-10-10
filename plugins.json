@@ -2,7 +2,7 @@
     {
         "iconUrl": "https://api.kineflex.site/logo.jpg",
         "apiVersion": 1,
-        "repositoryUrl": "https://github.com/nemoe7/cs3-phisher-modded",
+        "repositoryUrl": "https://github.com/lakshya9pro/Kineflex-extension",
         "status": 1,
         "language": "en",
         "authors": [
@@ -15,7 +15,7 @@
         "version": 1,
         "internalName": "KineFlex",
         "description": "KineFlex movies & TV streaming with TMDB metadata, configurable JSON home feeds, and authorized stream resolution.",
-        "url": "https://raw.githubusercontent.com/nemoe7/cs3-phisher-modded/builds/KineFlex.cs3",
+        "url": "https://raw.githubusercontent.com/lakshya9pro/Kineflex-extension/builds/KineFlex.cs3",
         "name": "KineFlex"
     }
 ]
