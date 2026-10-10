@@ -1,0 +1,9 @@
+{
+  "name": "Kineflex",
+  "iconUrl": "https://api.kineflex.site/logo.jpg",
+  "description": "All Language Contents",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://raw.githubusercontent.com/lakshya9pro/Kineflex-extension/refs/heads/builds/plugins.json"
+  ]
+}
