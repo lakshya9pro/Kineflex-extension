@@ -1,0 +1,21 @@
+[
+    {
+        "iconUrl": "https://api.kineflex.site/logo.jpg",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/nemoe7/cs3-phisher-modded",
+        "status": 1,
+        "language": "en",
+        "authors": [
+            "KineFlex"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "KineFlex",
+        "description": "KineFlex movies & TV streaming with TMDB metadata, configurable JSON home feeds, and authorized stream resolution.",
+        "url": "https://raw.githubusercontent.com/nemoe7/cs3-phisher-modded/builds/KineFlex.cs3",
+        "name": "KineFlex"
+    }
+]
