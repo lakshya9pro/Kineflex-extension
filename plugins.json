@@ -1,0 +1,42 @@
+[
+        {
+            "iconUrl": "https://api.kineflex.site/logo.jpg",
+            "apiVersion": 1,
+            "repositoryUrl": "https://github.com/lakshya9pro/Kineflex-extension",
+            "fileSize": 76594,
+            "status": 1,
+            "language": "en",
+            "authors": [
+                "KineFlex"
+            ],
+            "tvTypes": [
+                "Movie",
+                "TvSeries"
+            ],
+            "version": 1,
+            "internalName": "KineFlex",
+            "description": "KineFlex movies & TV streaming with TMDB metadata, configurable JSON home feeds, and authorized stream resolution.",
+            "url": "https://raw.githubusercontent.com/lakshya9pro/Kineflex-extension/builds/KineFlex.cs3",
+            "name": "KineFlex"
+        },
+        {
+            "apiVersion": 1,
+            "repositoryUrl": "https://github.com/lakshya9pro/Kineflex-extension",
+            "fileSize": 23235,
+            "fileHash": "sha256-35021bdfc7d7caa06de9c4f4487b0196a110ea1cf2384569cd30446994e5c71c",
+            "status": 1,
+            "language": "en",
+            "authors": [
+                "Custom"
+            ],
+            "tvTypes": [
+                "Movie",
+                "TvSeries"
+            ],
+            "version": 1,
+            "internalName": "PaStreamProvider",
+            "description": "CloudStream 3 provider for PaStream / custom streaming sites with multi-source video extraction, HLS streaming, and XOR unseal support.",
+            "url": "https://raw.githubusercontent.com/lakshya9pro/Kineflex-extension/builds/PaStreamProvider.cs3",
+            "name": "PaStreamProvider"
+        }
+    ]
